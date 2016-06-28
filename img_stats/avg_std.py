@@ -39,7 +39,7 @@ def stdHSV(image_paths):
   return df
 
 
-def HSV_stats(image_paths):
+def HSV_avg_std(image_paths):
   df_avg = avgHSV(image_paths)
   df_std = stdHSV(image_paths)
 
