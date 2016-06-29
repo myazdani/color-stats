@@ -10,9 +10,9 @@ def HSV_hists(image_paths, Hue_bins = 180, Sat_bins = 256, Val_bins = 256):
   SatHist = HSVHistTransformer(hist_type = "sat", num_bins = Sat_bins)
   ValHist = HSVHistTransformer(hist_type = "val", num_bins = Val_bins)
 
-  hues = HueHist.transform(image_paths)
-  sats = SatHist.transform(image_paths)
-  vals = ValHist.transform(image_paths)  
+  hues = HueHist.transform(image_paths) + 1
+  sats = SatHist.transform(image_paths) + 1
+  vals = ValHist.transform(image_paths) + 1
 
   return hues, sats, vals
 
@@ -22,9 +22,9 @@ def HSV_PCA(image_paths, Hue_bins = 180, Sat_bins = 256, Val_bins = 256):
 
   pca = RandomizedPCA(n_components=3)
 
-  hue_pca = pca.fit_transform(hsv_hists[0])
-  sat_pca = pca.fit_transform(hsv_hists[1])
-  val_pca = pca.fit_transform(hsv_hists[2])
+  hue_pca = pca.fit_transform(np.log(hsv_hists[0]))
+  sat_pca = pca.fit_transform(np.log(hsv_hists[1]))
+  val_pca = pca.fit_transform(np.log(hsv_hists[2]))
 
   hsv_df = pd.DataFrame(data = np.hstack((hue_pca, sat_pca, val_pca)))
   h_cols = ["HuePC" + str(i) for i in range(1,4)]
