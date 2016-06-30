@@ -7,7 +7,7 @@ import pandas as pd
 
 def HSV_PCA(image_paths, hue_bins = 180, sat_bins = 256, val_bins = 256):
 
-  hsv_hists = HSV_hists(image_paths, Hue_bins, Sat_bins, Val_bins)
+  hsv_hists = HSV_hists(image_paths, hue_bins, sat_bins, val_bins)
 
   pca = RandomizedPCA(n_components=3)
 
