@@ -5,18 +5,7 @@ from sklearn.decomposition import RandomizedPCA
 import pandas as pd
 
 
-def HSV_hists(image_paths, Hue_bins = 180, Sat_bins = 256, Val_bins = 256):
-  HueHist = HSVHistTransformer(hist_type = "hue", num_bins = Hue_bins)
-  SatHist = HSVHistTransformer(hist_type = "sat", num_bins = Sat_bins)
-  ValHist = HSVHistTransformer(hist_type = "val", num_bins = Val_bins)
-
-  hues = HueHist.transform(image_paths) + 1
-  sats = SatHist.transform(image_paths) + 1
-  vals = ValHist.transform(image_paths) + 1
-
-  return hues, sats, vals
-
-def HSV_PCA(image_paths, Hue_bins = 180, Sat_bins = 256, Val_bins = 256):
+def HSV_PCA(image_paths, hue_bins = 180, sat_bins = 256, val_bins = 256):
 
   hsv_hists = HSV_hists(image_paths, Hue_bins, Sat_bins, Val_bins)
 

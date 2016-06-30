@@ -59,3 +59,15 @@ class HSVHistTransformer(BaseEstimator, TransformerMixin):
     self.mode = np.argmax(np.array(normalized_color_hists), axis = 1)
     self.entropy = entropy(np.array(normalized_color_hists).T)
     return np.array(normalized_color_hists)
+
+
+def HSV_hists(image_paths, hue_bins = 180, sat_bins = 256, val_bins = 256):
+  HueHist = HSVHistTransformer(hist_type = "hue", num_bins = hue_bins)
+  SatHist = HSVHistTransformer(hist_type = "sat", num_bins = sat_bins)
+  ValHist = HSVHistTransformer(hist_type = "val", num_bins = val_bins)
+
+  hues = HueHist.transform(image_paths) + 1
+  sats = SatHist.transform(image_paths) + 1
+  vals = ValHist.transform(image_paths) + 1
+
+  return hues, sats, vals
