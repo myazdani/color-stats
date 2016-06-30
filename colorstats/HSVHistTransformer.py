@@ -24,6 +24,9 @@ class HSVHistTransformer(BaseEstimator, TransformerMixin):
     self.hist_type = hist_type
     self.num_bins = num_bins
 
+  def __str__(self):
+    return hist_type, "histogram with", str(num_bins), "bins"
+
   def fit(self, x, y=None):
     return self
 
