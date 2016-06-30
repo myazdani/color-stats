@@ -66,8 +66,8 @@ def HSV_hists(image_paths, hue_bins = 180, sat_bins = 256, val_bins = 256):
   SatHist = HSVHistTransformer(hist_type = "sat", num_bins = sat_bins)
   ValHist = HSVHistTransformer(hist_type = "val", num_bins = val_bins)
 
-  hues = HueHist.transform(image_paths) + 1
-  sats = SatHist.transform(image_paths) + 1
-  vals = ValHist.transform(image_paths) + 1
+  hues = HueHist.transform(image_paths)
+  sats = SatHist.transform(image_paths)
+  vals = ValHist.transform(image_paths)
 
   return hues, sats, vals
